@@ -89,16 +89,16 @@ public class FlightController {
 			@RequestParam(required = false) Long fromSelection, @RequestParam int numberOfPassengers, Model model,
 			@RequestParam FlightClass flightClass, Principal principal) {
 
-		User currentUser = principal != null ? userRepository.findByUsername(principal.getName()) : null;
+
 
 
 		//users.add(userService.getUser());
 
 		List<Flight> flights = flightRepository.findByFrom_CodeAndTo_Code(from, to);
 
-		for(Flight flight:flights){
-			flight.addUser(currentUser);
-		}
+//		for(Flight flight:flights){
+//			flight.addUser(currentUser);
+//		}
 
 		model.addAttribute("flightOptions", flights);
 
@@ -167,14 +167,16 @@ public class FlightController {
 		Flight fromFlight = flightRepository.findById(fromSelection).get();
 			fromFlight.setNumberOfPassengers(numberOfPassengers);
 			fromFlight.setFlightClass(flightClass);
-			//fromFlight.setUsers(users);
+			fromFlight.addUser(userService.getUser());
+			flightRepository.save(fromFlight);
 			Flight toFlight;
 			model.addAttribute("fromFlight", fromFlight);
 			if (null != toSelection) {
 				toFlight = flightRepository.findById(toSelection).get();
 				toFlight.setNumberOfPassengers(numberOfPassengers);
 			toFlight.setFlightClass(flightClass);
-			//toFlight.setUsers(users);
+			toFlight.addUser(userService.getUser());
+			flightRepository.save(toFlight);
 			model.addAttribute("toFlight", toFlight);
 		}
 

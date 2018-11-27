@@ -2,15 +2,11 @@ package com.example.demo;
 
 import java.util.Arrays;
 
+import com.example.demo.security.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import com.example.demo.security.Role;
-import com.example.demo.security.RoleRepository;
-import com.example.demo.security.User;
-import com.example.demo.security.UserRepository;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -25,6 +21,9 @@ public class DataLoader implements CommandLineRunner {
 
 	@Autowired
 	FlightRepository flightRepository;
+
+	@Autowired
+	UserService userService;
 
 
 	@Autowired
@@ -66,8 +65,10 @@ public class DataLoader implements CommandLineRunner {
 		// Inserting flight information data to the database
 
 		flightRepository.save(new Flight("F2501", jfk, fll, "11:00", "2:00", 180, 120.2, 500.0, 550.0, "A321"));
+
 		flightRepository.save(new Flight("F2501", fll, jfk, "13:00", "5:00", 181, 119.0, 481.2, 510.0, "A321"));
-		Flight flight= flightRepository.save(new Flight("F2501", jfk, atl, "15:00", "11:00", 200, 150.0, 200.0, 410.0, "A323"));
+
+		Flight flight =flightRepository.save(new Flight("F2501", jfk, atl, "15:00", "11:00", 200, 150.0, 200.0, 410.0, "A323"));
 		flight.addUser(user);
 		flightRepository.save(flight);
 
