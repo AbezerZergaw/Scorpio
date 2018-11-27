@@ -86,5 +86,6 @@ public class DataLoader implements CommandLineRunner {
 		flightRepository.save(new Flight("F0578", lax, iad, "7:30pm", "9:00pm", 200, 250.5, 400.0, 500.0, "E777"));
 		flightRepository.save(new Flight("F0578", iad, jfk, "7:30pm", "9:00pm", 200, 250.5, 400.0, 500.0, "E777"));
 		flightRepository.save(new Flight("F0578", jfk, iad, "7:30pm", "9:00pm", 200, 250.5, 400.0, 500.0, "E777"));
+		flightRepository.save(new Flight("F0571", fll, iad, "7:30pm", "9:00pm", 200, 250.5, 400.0, 500.0, "E777"));
 	}
 }
