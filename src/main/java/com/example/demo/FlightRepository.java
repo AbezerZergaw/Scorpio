@@ -10,6 +10,7 @@ public interface FlightRepository extends CrudRepository<Flight, Long> {
 
      List<Flight> findByFrom_CodeAndTo_Code(String fromCode, String toCode);
 
-    // Iterable<Flight> findAllUsersIn(ArrayList<User> users);
+    // List<Flight> findAllUsersIn(ArrayList<User> users);
+    Iterable<Flight> findByUsersIn(ArrayList<User> users);
 
 }

@@ -50,7 +50,7 @@
 							type="button" class="btn btn-secondary"
 							th:href="@{/search(fromSelection=${flight.id},from=${to},to=${from},departure=${arrival},tripType='round_trip',numberOfPassengers=${numberOfPassengers}, flightClass=${flightClass})}">Select</a></td>
 						<td th:if="${tripType == 'round_trip'  && fromSelection!=null}"><a
-							type="button" class="btn btn-secondary"
+								type="button" class="btn btn-secondary"
 							th:href="@{/reserveFlight(fromSelection=${fromSelection},toSelection=${flight.id}, numberOfPassengers=${numberOfPassengers}, flightClass=${flightClass})}">Select</a></td>
 
 					</tr>

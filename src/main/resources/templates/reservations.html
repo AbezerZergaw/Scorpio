@@ -23,38 +23,38 @@
 </div>
 
 
-<!--<div class="container">-->
-    <!--<h3 class="text-center py-3 pl-4 pr-5">Your Reservations</h3>-->
+<div class="container">
+    <h3 class="text-center py-3 pl-4 pr-5">  Reservations</h3>
 
-    <!--<div align="center">-->
-        <!--<table class="table table-hover">-->
-            <!--<thead>-->
-            <!--<tr>-->
-                <!--<th scope="col"></th>-->
-                <!--<th scope="col"></th>-->
-                <!--<th scope="col">From</th>-->
-                <!--<th scope="col">To</th>-->
-                <!--<th scope="col">Dep. Time</th>-->
-                <!--<th scope="col">Arr. Time</th>-->
-                <!--<th scope="col">Aircraft</th>-->
-            <!--</tr>-->
-            <!--</thead>-->
-            <!--<tbody>-->
-            <!--<tr th:each="user: ${users}">-->
-                <!--<td th:each=" flight: ${flights}"> </td>-->
-
-                <!--<td th:text="${flight.id}"></td>-->
-                <!--<td th:text="${flight.flightNumber}"></td>-->
-                <!--<td th:text="${flight.from.code}"></td>-->
-                <!--<td th:text="${flight.to.code}"></td>-->
-                <!--<td th:text="${flight.departure}"></td>-->
-                <!--<td th:text="${flight.arrival}"></td>-->
-                <!--<td th:text="${flight.aircraft}"></td>-->
-            <!--</tr>-->
-            <!--</tbody>-->
-        <!--</table>-->
-    <!--</div>-->
-<!--</div>-->
+    <div align="center">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">Flight Number</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">Dep. Time</th>
+                <th scope="col">Arr. Time</th>
+                <th scope="col">Aircraft</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each=" flight: ${flights}">
+                <td th:each="user: ${users}"></td>
+                <td th:text="${flight.id}"></td>
+                <td th:text="${flight.flightNumber}"></td>
+                <td th:text="${flight.from.code}"></td>
+                <td th:text="${flight.to.code}"></td>
+                <td th:text="${flight.departure}"></td>
+                <td th:text="${flight.arrival}"></td>
+                <td th:text="${flight.aircraft}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <div th:replace="base :: footer"></div>
 

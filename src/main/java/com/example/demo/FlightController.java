@@ -83,14 +83,23 @@ public class FlightController {
 
 		return "homepage";
 	}
-
 	@RequestMapping("/search")
 	public String saveFlight(@RequestParam String from, @RequestParam String to, @RequestParam String departure,
 			@RequestParam(required = false) String arrival, @RequestParam TripType tripType,
 			@RequestParam(required = false) Long fromSelection, @RequestParam int numberOfPassengers, Model model,
-			@RequestParam FlightClass flightClass) {
+			@RequestParam FlightClass flightClass, Principal principal) {
+
+		User currentUser = principal != null ? userRepository.findByUsername(principal.getName()) : null;
+
+
+		//users.add(userService.getUser());
 
 		List<Flight> flights = flightRepository.findByFrom_CodeAndTo_Code(from, to);
+
+		for(Flight flight:flights){
+			flight.addUser(currentUser);
+		}
+
 		model.addAttribute("flightOptions", flights);
 
 		// model.addAttribute("search", flightSearch);
@@ -148,18 +157,28 @@ public class FlightController {
 			Model model, Principal principal, @RequestParam int numberOfPassengers,
 			@RequestParam FlightClass flightClass)
 	{
+
+		User currentUser = principal != null ? userRepository.findByUsername(principal.getName()) : null;
+
+
+		//users.add(currentUser);
+
+
 		Flight fromFlight = flightRepository.findById(fromSelection).get();
 			fromFlight.setNumberOfPassengers(numberOfPassengers);
 			fromFlight.setFlightClass(flightClass);
+			//fromFlight.setUsers(users);
 			Flight toFlight;
 			model.addAttribute("fromFlight", fromFlight);
 			if (null != toSelection) {
 				toFlight = flightRepository.findById(toSelection).get();
 				toFlight.setNumberOfPassengers(numberOfPassengers);
 			toFlight.setFlightClass(flightClass);
+			//toFlight.setUsers(users);
 			model.addAttribute("toFlight", toFlight);
 		}
-		User currentUser = principal != null ? userRepository.findByUsername(principal.getName()) : null;
+
+
 
 		model.addAttribute("passenger", new Passenger());
 
@@ -198,10 +217,31 @@ public class FlightController {
 
 	@GetMapping("/reservations")
 	public String seeReservation(Model model, Principal principal){
+		ArrayList<User> users= new ArrayList<>();
+	//	User currentUser = principal != null ? userRepository.findByUsername(principal.getName()) : null;
 
-		User currentUser = principal != null ? userRepository.findByUsername(principal.getName()) : null;
-		//model.addAttribute("users",userRepository.findAll());
+		 users.add(userService.getUser());
+//		users.add(user);
 
+		Iterable<Flight> flights= flightRepository.findByUsersIn(users);
+
+		//List<Flight> flights = flightRepository.findByFrom_CodeAndTo_Code(from, to);
+
+		model.addAttribute("users",users);
+		model.addAttribute("flights", flights);
+
+		// currentUser = userRepository.findByUsername(principal.getName());
+	//	model.addAttribute("user", user);
+		for(Flight flight:flights){
+			System.out.println("Flight reservation info "+ flight.getAircraft()+ " ");
+		}
+		for(User user:users){
+			System.out.println("User Information for reservation "+ user.getFirstName()+ " ");
+		}
+
+	//	List<Flight> flights= flightRepository.findAllUsersIn(users);
+	//	model.addAttribute("flights", flights);
+	//	model.addAttribute("users",userRepository.findAll());
 		return "reservations";
 	}
 

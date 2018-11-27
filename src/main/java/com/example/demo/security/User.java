@@ -75,6 +75,7 @@ public class User {
         this.enabled = enabled;
         this.username = username;
         roles = new ArrayList<>();
+        flights= new ArrayList<>();
     }
 
 
@@ -174,5 +175,7 @@ public class User {
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
+
+
 
 }

@@ -47,7 +47,6 @@ public class Flight {
 
 	public Flight() {
 
-		users = new ArrayList<>();
 	}
 
 	public Flight(String flightNumber, Airport from, Airport to, String departure, String arrival, Integer duration,
@@ -62,6 +61,7 @@ public class Flight {
 		this.priceBusiness = priceBusiness;
 		this.priceFirstclass = priceFirstclass;
 		this.aircraft = aircraft;
+		users=new ArrayList<>();
 	}
 
 	public long getId() {
@@ -191,5 +191,9 @@ public class Flight {
 
 	public void setNumberOfPassengers(int numberOfPassengers) {
 		this.numberOfPassengers = numberOfPassengers;
+	}
+
+	public void addUser(User user1){
+		users.add(user1);
 	}
 }
