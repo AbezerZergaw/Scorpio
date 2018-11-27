@@ -16,40 +16,41 @@
 
 <div th:fragment="nav">
 
-    <nav class="navbar navbar navbar-expand-lg navbar-light bg-dark">
-        <a class="navbar-brand text-white" href="/">Scorpio Flight Reservation </a>
+    <nav class="navbar navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <a class="navbar-brand text-black" href="/">
+            <img src="https://res.cloudinary.com/dsudmfnrq/image/upload/v1543329033/kisspng-scorpio-astrological-sign-astrological-symbols-ast-horoscope-5ac073d9260246.1696263715225620091557.png" alt="HTML5 Icon" width="50" height="50">Scorpio Flight Reservation </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div th:id="topmenu" class="collapse navbar-collapse text-black" id="navbarSupportedContent">
             <ul class="nav navbar-nav ml-auto">
-                <li sec:authorize="isAuthenticated()" class="nav-item text-light">
+                <li sec:authorize="isAuthenticated()" class="nav-item">
                     <a class="btn btn-secondary" th:href="@{/updateProfile}">
                         Welcome <span th:text="${#authentication.name}"></span></a>
                 </li>
-                <li class="nav-item text-light active">
-                    <a class="nav-link text-white" href="/">Home</a>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="/">Home</a>
                 </li>
-                <li sec:authorize="isAnonymous()" class="nav-item text-light">
-                    <a class="nav-link text-white" href="/login">Login</a>
+                <li sec:authorize="isAnonymous()" class="nav-item">
+                    <a class="nav-link text-black" href="/login">Login</a>
                 </li>
-                <li sec:authorize="isAnonymous()" class="nav-item text-light">
-                    <a class="nav-link text-white" href="/register">Register</a>
+                <li sec:authorize="isAnonymous()" class="nav-item">
+                    <a class="nav-link text-black" href="/register">Register</a>
                 </li>
-                <li  sec:authorize="hasAuthority('ADMIN')" class="nav-item text-light">
-                    <a class="nav-link text-white" href="/allflight">See All Flights </a>
+                <li  sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+                    <a class="nav-link text-black" href="/allflight">See All Flights </a>
                 </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item text-light">
-                    <a class="nav-link text-white" href="/reservations">All reservations</a>
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link text-black" href="/reservations">All reservations</a>
                 </li>
-                <li  sec:authorize="hasAuthority('ADMIN')" class="nav-item text-light">
-                    <a class="nav-link text-white" href="/addFlight">ADD Flight </a>
+                <li  sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+                    <a class="nav-link text-black" href="/addFlight">ADD Flight </a>
                 </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item text-light">
-                    <a class="nav-link text-white" href="/logout">Logout</a>
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link text-black" href="/logout">Logout</a>
                 </li>
             </ul>
         </div>
