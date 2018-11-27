@@ -11,18 +11,19 @@
 	<div th:replace="base :: nav"></div>
 
 	<div class="container">
-		<h1 class="text-center">Welcome to Scorpio Flights Reservation!</h1>
+		<h1 class="text-white text-lg-center">Welcome to Scorpio Flights Reservation!</h1>
 	</div>
 
 	<div class="container">
+		<div>
 
-		<h3 class="text-center py-3 pl-4 pr-5">Flights</h3>
+		<h3 class="text-center py-3 pl-4 pr-5 text-white" >Available Flights</h3>
 		<input type="hidden" th:value="${tripType}" name="tripType"> <input
 			type="hidden" th:value="${numberOfPassengers}"
 			name="numberOfPassengers">
 
 		<div align="center">
-			<table class="table table-hover">
+			<table class=" table table-borderless table-hover shadow mb-4 bg-white">
 				<thead>
 					<tr>
 						<th scope="col"></th>
@@ -58,6 +59,7 @@
 			</table>
 		</div>
 
+	</div>
 	</div>
 
 	<div th:replace="base :: footer"></div>
