@@ -202,7 +202,7 @@ public class FlightController {
 // concatenate the strings
 		String fullinformation  = firstName + lastName +email;
 
-		generateQRCodeImage(fullinformation,350,300,"C:\\Users\\Abe\\Desktop\\MyQRCode.png");
+		generateQRCodeImage(fullinformation,350,300,"C:\\Users\\smewl\\Documents\\NewFinalProject_Scorpio\\src\\main\\resources\\static\\image\\QRcode.png");
 
 		return "test";
 
@@ -214,6 +214,8 @@ public class FlightController {
 		BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height);
 
 		Path path = FileSystems.getDefault().getPath(filePath);
+		System.out.println("the path of file"+ filePath);
+
 		MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
 	}
 
