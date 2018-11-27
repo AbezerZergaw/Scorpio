@@ -72,13 +72,19 @@ public class DataLoader implements CommandLineRunner {
 		flight.addUser(user);
 		flightRepository.save(flight);
 
-		flightRepository.save(new Flight("F9011", jfk, fll, "1:00", "22:00", 195, 110.2, 494.0, 526.0, "A320"));
-		flightRepository.save(new Flight("F9011", jfk, fll, "2018-11-20", "2018-11-20", 200, 110.2, 494.0, 560.0, "A320"));
-		flightRepository.save(new Flight("F3513", atl, ord, "2018-11-20", "2018-11-20", 108, 90.9, 234.0, 300.0, "E75L"));
-		flightRepository.save(new Flight("F4978", ord, jfk, "2018-11-20", "2018-11-20", 180, 134.0, 515.8, 580.0, "E75L"));
-		flightRepository.save(new Flight("F0570", jfk, lax, "2018-11-20", "2018-11-20", 200, 145.8, 634.0, 690.0, "B763"));
-		flightRepository.save(new Flight("F0571", lax, jfk, "2018-11-26", "2018-11-27", 200, 150.8, 650.0, 710.0, "B767"));
-		flightRepository.save(new Flight("F0574", lax, atl, "2018-11-28", "2018-11-28", 130, 200.8, 390.0, 450.0, "B787"));
-		flightRepository.save(new Flight("F0572", lax, fll, "2018-11-29", "2018-11-30", 190, 250.5, 400.0, 500.0, "B777"));
+		flightRepository.save(new Flight("F9011", jfk, fll, "1:00pm", "3:30pm", 195, 110.2, 494.0, 526.0, "A320"));
+		flightRepository.save(new Flight("F9012", fll, jfk, "6:00am", "9:00am", 200, 110.2, 494.0, 560.0, "A320"));
+		flightRepository.save(new Flight("F3513", atl, ord, "9:00pm", "10:30pm", 108, 90.9, 234.0, 300.0, "E757"));
+		flightRepository.save(new Flight("F3514", ord, atl, "9:00am", "10:30am", 108, 90.9, 234.0, 300.0, "E777"));
+		flightRepository.save(new Flight("F4979", ord, jfk, "12:30pm", "2:00pm", 180, 134.0, 515.8, 580.0, "E75L"));
+		flightRepository.save(new Flight("F4978", jfk, ord, "12:30am", "2:00am", 180, 134.0, 515.8, 580.0, "E75L"));
+		flightRepository.save(new Flight("F0570", jfk, lax, "9:00pm", "10:30pm", 200, 145.8, 634.0, 690.0, "B763"));
+		flightRepository.save(new Flight("F0571", lax, jfk, "1:00pm", "3:30pm", 200, 150.8, 650.0, 710.0, "B767"));
+		flightRepository.save(new Flight("F0574", lax, atl, "6:00am", "9:00am", 130, 200.8, 390.0, 450.0, "B787"));
+		flightRepository.save(new Flight("F0577", atl, lax, "12:30pm", "3:00pm", 190, 250.5, 400.0, 500.0, "B777"));
+		flightRepository.save(new Flight("F0579", iad, lax, "12:30pm", "3:00pm", 150, 350.5, 400.0, 500.0, "B787"));
+		flightRepository.save(new Flight("F0578", lax, iad, "7:30pm", "9:00pm", 200, 250.5, 400.0, 500.0, "E777"));
+		flightRepository.save(new Flight("F0578", iad, jfk, "7:30pm", "9:00pm", 200, 250.5, 400.0, 500.0, "E777"));
+		flightRepository.save(new Flight("F0578", jfk, iad, "7:30pm", "9:00pm", 200, 250.5, 400.0, 500.0, "E777"));
 	}
 }

@@ -19,25 +19,7 @@ $(document).ready(function() {
 		minDate : 0,
 		dateFormat : 'mm/dd/yy'
 	});
-    $(function() {
-        // this will get the full URL at the address bar
-        var url = window.location.href;
 
-        // passes on every "a" tag
-        $("#topmenu a").each(function() {
-            // checks if its the same on the address bar
-            if (url == (this.href)) {
-                $(this).closest("li").addClass("active");
-                //for making parent of submenu active
-                $(this).closest("li").parent().parent().addClass("active");
-            }
-        });
-    });
-    // $('#departure-date').on('change', function(){
-	// debugger;
-	// $("#return-date").datepicker(
-	// "change", {
-	// minDate: new Date($('#departure-date').val())
-	// });
-	// })
-})
+
+
+});

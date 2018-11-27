@@ -202,7 +202,7 @@ public class FlightController {
 // concatenate the strings
 		String fullinformation  = firstName + lastName +email;
 
-		generateQRCodeImage(fullinformation,350,300,"C:\\Users\\smewl\\Desktop\\QrCode\\MyQRCode.png");
+		generateQRCodeImage(fullinformation,350,300,"C:\\Users\\Abe\\Desktop\\MyQRCode.png");
 
 		return "test";
 
