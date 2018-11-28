@@ -45,9 +45,19 @@ body {
 
     background-size: cover;
     font-family: 'Source Sans Pro', sans-serif;
-
 }
 a:link, a:active {
     color: blue;
     text-decoration: none;
 }
+/*
+body, html {
+
+    background:url("https://res.cloudinary.com/dsudmfnrq/image/upload/v1543423803/background-world-map.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    margin: 0;
+    height: 100%;
+    background-position: center;
+}*/

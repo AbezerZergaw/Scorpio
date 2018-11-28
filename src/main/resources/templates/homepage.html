@@ -35,16 +35,16 @@
 					</select>
 
 				</div>
-				<div class="col">
-					From: &nbsp; <select required aria-required="true"  class="form-control" th:field="*{from}">
+				<div class="col-sm-6">
+                    <strong>From:</strong> &nbsp; <select required aria-required="true"  class="form-control" style="background-color:lavender" th:field="*{from}">
 						<option value="">Departure:</option>
 						<option th:each="airport : ${airports}" th:value="${airport.code}"
 							th:text="${airport.name}"></option>
 					</select>
 				</div>
 				<br />
-				<div class="col">
-					To: &nbsp; <select required aria-required="true"  class="form-control" th:field="*{to}">
+				<div class="col-sm-6">
+                    <strong>To:</strong> &nbsp; <select  style="background-color:lavender" required aria-required="true"  class="form-control" th:field="*{to}">
 						<option value="">Arrival:</option>
 						<option th:each="airport : ${airports}" th:value="${airport.code}"
 							th:text="${airport.name}"></option>
@@ -52,13 +52,13 @@
 				</div>
 				<br />
 				<div>
-					Departure date: &nbsp; <input type="text" class="date-picker"
+					Departure date: &nbsp; <input style="background-color:lavender" type="text" class="date-picker"
 						id="departure-date" th:field="${flight.departure}"
 						name="departure" required aria-required="true" >
 				</div>
 				<br />
 				<div id="return-date">
-					Return date: &nbsp; <input type="text" class="date-picker"
+					Return date: &nbsp; <input style="background-color:lavender"  type="text" class="date-picker"
 						 th:field="${flight.arrival}" name="arrival" >
 				</div>
 				<br />
@@ -66,7 +66,6 @@
 					<input type="submit" class="btn btn-primary" value="Submit" />
 				</div>
 			</form>
-
 		</div>
 		<script th:src="@{/js/flightSearch.js}" type="text/javascript"></script>
 
