@@ -20,14 +20,14 @@
                     Flight Number </label>
                 <div class="col-sm-4">
                     <input type="text"  class="form-control" id="flightNumber" name="flightNumber"
-                           placeholder="Flight_Number" value="">
-                    </strong></mark>
+                           placeholder="Flight_Number" value="" required>
+
                 </div>
             </div>
 
             <div class="col-sm-4">
             From: &nbsp;
-            <select class="form-control" th:field="*{from}">
+            <select required class="form-control" th:field="*{from}">
                 <option value="">Departure:</option>
                 <option th:each="airport : ${airports}" th:value="${airport.code}"
                         th:text="${airport.name}"></option>
@@ -35,7 +35,7 @@
         </div>
             <div class="col-sm-4">
                 To: &nbsp;
-                <select class="form-control" th:field="*{to}">
+                <select required class="form-control" th:field="*{to}">
                     <option value="">Arrival:</option>
                     <option th:each="airport : ${airports}" th:value="${airport.code}"
                             th:text="${airport.name}"></option>
@@ -48,7 +48,7 @@
                 <div class="col-sm-4">
                     <input type="number" class="form-control" id="econnomy" name="priceEconomy"
                            th:field="${flight.priceEconomy}"
-                           placeholder="price of Economy_Class flight" value="">
+                           placeholder="price of Economy_Class flight" value="" required>
                     </strong></mark>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 <div class="col-sm-4">
                     <input type="number" class="form-control" id="business" name="priceBusiness"
                            placeholder="price of Business_Class flight"
-                           th:field="${flight.priceBusiness}"value="">
+                           th:field="${flight.priceBusiness}"value="" required>
                     </strong></mark>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                 <div class="col-sm-4">
                     <input type="number" class="form-control" id="first" name="priceFirstclass"
                            th:field="${flight.priceFirstclass}"
-                           placeholder="price of First_Class flight" value="">
+                           placeholder="price of First_Class flight" value="" required>
                     </strong></mark>
                 </div>
             </div>
@@ -79,19 +79,19 @@
                     Aircraft </label>
                 <div class="col-sm-4">
                     <input type="text" th:field="${flight.aircraft}" class="form-control" id="aircraft" name="aircraft"
-                           placeholder="Aircraft" value="">
+                           placeholder="Aircraft" value="" required>
                     </strong></mark>
                 </div>
             </div>
 
             <div>
                 Departure date: &nbsp;
-                <input type="time" th:field="${flight.departure}" name="departure">
+                <input type="time" th:field="${flight.departure}" name="departure" required>
             </div>
             <br/>
             <div>
                 Return date: &nbsp;
-                <input type="time" th:field="${flight.arrival}" name="arrival">
+                <input type="time" th:field="${flight.arrival}" name="arrival" required>
             </div>
             <br/>
 

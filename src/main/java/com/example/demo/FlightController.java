@@ -78,7 +78,6 @@ public class FlightController {
 		model.addAttribute("airports", airportRepository.findAll());
 		model.addAttribute("flight", new Flight());
 		model.addAttribute("passenger", new Passenger());
-
 		model.addAttribute("flightClasses", FlightClass.values());
 
 		return "homepage";
@@ -90,26 +89,14 @@ public class FlightController {
 			@RequestParam FlightClass flightClass, Principal principal) {
 
 
-
-
-		//users.add(userService.getUser());
-
 		List<Flight> flights = flightRepository.findByFrom_CodeAndTo_Code(from, to);
-
-//		for(Flight flight:flights){
-//			flight.addUser(currentUser);
-//		}
-
 		model.addAttribute("flightOptions", flights);
-
-		// model.addAttribute("search", flightSearch);
 		model.addAttribute("airports", airportRepository.findAll());
 		model.addAttribute("tripType", tripType.toString());
 		model.addAttribute("from", from);
 		model.addAttribute("to", to);
 		model.addAttribute("departure", departure);
 		model.addAttribute("arrival", arrival);
-
 		model.addAttribute("fromSelection", fromSelection);
 		model.addAttribute("numberOfPassengers", numberOfPassengers);
 		model.addAttribute("flightClass", flightClass);
@@ -121,8 +108,7 @@ public class FlightController {
 	public String seeAllFlights(Model model, Principal principal) {
 
 		User currentUser = principal != null ? userRepository.findByUsername(principal.getName()) : null;
-		// Passenger currenPassenger = principal != null ?
-		// PassengerRepository.findById(id) : null;
+
 		model.addAttribute("user", currentUser);
 
 		model.addAttribute("flights", flightRepository.findAll());
@@ -161,9 +147,6 @@ public class FlightController {
 		User currentUser = principal != null ? userRepository.findByUsername(principal.getName()) : null;
 
 
-		//users.add(currentUser);
-
-
 		Flight fromFlight = flightRepository.findById(fromSelection).get();
 			fromFlight.setNumberOfPassengers(numberOfPassengers);
 			fromFlight.setFlightClass(flightClass);
@@ -180,8 +163,6 @@ public class FlightController {
 			model.addAttribute("toFlight", toFlight);
 		}
 
-
-
 		model.addAttribute("passenger", new Passenger());
 
 		return "bookingform";
@@ -195,14 +176,9 @@ public class FlightController {
 		String firstName = passenger.getFirstName();
 		String lastName  = passenger.getLastName();
 		String email = passenger.getEmail();
-		//String flight11 = passenger.getFlight();
-		//String flightnum= flightRepository.findById(id).get().getFlightNumber();
-		//String flightfrom = flight.getFrom().getName();
-	//	String flightto = flight.getTo().getName();
-// concatenate the strings
 		String fullinformation  = firstName + lastName +email;
 
-		generateQRCodeImage(fullinformation,350,300,"C:\\Users\\smewl\\Documents\\NewFinalProject_Scorpio\\src\\main\\resources\\static\\image\\QRcode.png");
+		generateQRCodeImage(fullinformation,350,300,"C:\\Users\\Abe\\Desktop\\Scorpio\\src\\main\\resources\\static\\image\\QRcode.png");
 
 		return "test";
 
@@ -222,20 +198,14 @@ public class FlightController {
 	@GetMapping("/reservations")
 	public String seeReservation(Model model, Principal principal){
 		ArrayList<User> users= new ArrayList<>();
-	//	User currentUser = principal != null ? userRepository.findByUsername(principal.getName()) : null;
 
 		 users.add(userService.getUser());
-//		users.add(user);
+
 
 		Iterable<Flight> flights= flightRepository.findByUsersIn(users);
-
-		//List<Flight> flights = flightRepository.findByFrom_CodeAndTo_Code(from, to);
-
 		model.addAttribute("users",users);
 		model.addAttribute("flights", flights);
 
-		// currentUser = userRepository.findByUsername(principal.getName());
-	//	model.addAttribute("user", user);
 		for(Flight flight:flights){
 			System.out.println("Flight reservation info "+ flight.getAircraft()+ " ");
 		}
@@ -243,9 +213,6 @@ public class FlightController {
 			System.out.println("User Information for reservation "+ user.getFirstName()+ " ");
 		}
 
-	//	List<Flight> flights= flightRepository.findAllUsersIn(users);
-	//	model.addAttribute("flights", flights);
-	//	model.addAttribute("users",userRepository.findAll());
 		return "reservations";
 	}
 

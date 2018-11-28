@@ -2,13 +2,16 @@ package com.example.demo;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Airport {
     @Id
+    @NotNull
     private String code;
-
+    @NotNull
     private String name;
+    @NotNull
     private String location;
 
     public Airport() {

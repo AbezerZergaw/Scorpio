@@ -22,19 +22,19 @@
 						Way</button>
 					<button id="round-trip" class="btn flight-type" type="button">Round
 						Trip</button>
-					<select  style="width: 120px; background-color:lavender; height: 40px" name="numberOfPassengers">
-						<option value="">Passengers</option>
-						<option th:each="i: ${#numbers.sequence(1,10)}" th:value="${i}"
-							th:text="${i}"></option>
-					</select>
-                    <select  style="width: 120px; background-color:lavender; height: 40px" name="flightClass">
+					<select required aria-required="true" style="width: 120px; background-color:lavender; height: 40px" name="numberOfPassengers">
+                        <option value="">Passengers</option>
+                        <option th:each="i: ${#numbers.sequence(1,10)}" th:value="${i}"
+                                th:text="${i}"  ></option>
+                    </select>
+                    <select required aria-required="true" style="width: 120px; background-color:lavender; height: 40px" name="flightClass">
 						<option value="">Flight Class</option>
 						<option th:each="flightClass: ${flightClasses}"
 							th:value="${flightClass}" th:text="${flightClass}"></option>
 					</select>
 				</div>
 				<div class="col">
-					From: &nbsp; <select class="form-control" th:field="*{from}">
+					From: &nbsp; <select required aria-required="true"  class="form-control" th:field="*{from}">
 						<option value="">Departure:</option>
 						<option th:each="airport : ${airports}" th:value="${airport.code}"
 							th:text="${airport.name}"></option>
@@ -42,7 +42,7 @@
 				</div>
 				<br />
 				<div class="col">
-					To: &nbsp; <select class="form-control" th:field="*{to}">
+					To: &nbsp; <select required aria-required="true"  class="form-control" th:field="*{to}">
 						<option value="">Arrival:</option>
 						<option th:each="airport : ${airports}" th:value="${airport.code}"
 							th:text="${airport.name}"></option>
@@ -52,12 +52,12 @@
 				<div>
 					Departure date: &nbsp; <input type="text" class="date-picker"
 						id="departure-date" th:field="${flight.departure}"
-						name="departure">
+						name="departure" required aria-required="true" >
 				</div>
 				<br />
 				<div id="return-date">
 					Return date: &nbsp; <input type="text" class="date-picker"
-						 th:field="${flight.arrival}" name="arrival">
+						 th:field="${flight.arrival}" name="arrival" >
 				</div>
 				<br />
 				<div>
