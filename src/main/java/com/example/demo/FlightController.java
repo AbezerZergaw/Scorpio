@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
@@ -14,6 +16,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +34,8 @@ import com.example.demo.security.UserService;
 
 @Controller
 public class FlightController {
+
+	private static final String QR_CODE_IMAGE_PATH = ".//image//MyQRCode.png";
 
 	@Autowired
 	AirportRepository airportRepository;
@@ -72,12 +77,14 @@ public class FlightController {
 		return "redirect:/";
 	}
 
+
 	@RequestMapping("/")
 	public String homePage(Model model) {
 
 		model.addAttribute("airports", airportRepository.findAll());
 		model.addAttribute("flight", new Flight());
 		model.addAttribute("passenger", new Passenger());
+
 		model.addAttribute("flightClasses", FlightClass.values());
 
 		return "homepage";
@@ -89,14 +96,24 @@ public class FlightController {
 			@RequestParam FlightClass flightClass, Principal principal) {
 
 
+		//users.add(userService.getUser());
+
 		List<Flight> flights = flightRepository.findByFrom_CodeAndTo_Code(from, to);
+
+//		for(Flight flight:flights){
+//			flight.addUser(currentUser);
+//		}
+
 		model.addAttribute("flightOptions", flights);
+
+		// model.addAttribute("search", flightSearch);
 		model.addAttribute("airports", airportRepository.findAll());
 		model.addAttribute("tripType", tripType.toString());
 		model.addAttribute("from", from);
 		model.addAttribute("to", to);
 		model.addAttribute("departure", departure);
 		model.addAttribute("arrival", arrival);
+
 		model.addAttribute("fromSelection", fromSelection);
 		model.addAttribute("numberOfPassengers", numberOfPassengers);
 		model.addAttribute("flightClass", flightClass);
@@ -108,7 +125,8 @@ public class FlightController {
 	public String seeAllFlights(Model model, Principal principal) {
 
 		User currentUser = principal != null ? userRepository.findByUsername(principal.getName()) : null;
-
+		// Passenger currenPassenger = principal != null ?
+		// PassengerRepository.findById(id) : null;
 		model.addAttribute("user", currentUser);
 
 		model.addAttribute("flights", flightRepository.findAll());
@@ -147,6 +165,9 @@ public class FlightController {
 		User currentUser = principal != null ? userRepository.findByUsername(principal.getName()) : null;
 
 
+		//users.add(currentUser);
+
+
 		Flight fromFlight = flightRepository.findById(fromSelection).get();
 			fromFlight.setNumberOfPassengers(numberOfPassengers);
 			fromFlight.setFlightClass(flightClass);
@@ -163,6 +184,8 @@ public class FlightController {
 			model.addAttribute("toFlight", toFlight);
 		}
 
+
+
 		model.addAttribute("passenger", new Passenger());
 
 		return "bookingform";
@@ -176,9 +199,15 @@ public class FlightController {
 		String firstName = passenger.getFirstName();
 		String lastName  = passenger.getLastName();
 		String email = passenger.getEmail();
+		//String flight11 = passenger.getFlight();
+		//String flightnum= flightRepository.findById(id).get().getFlightNumber();
+		//String flightfrom = flight.getFrom().getName();
+	//	String flightto = flight.getTo().getName();
+// concatenate the strings
 		String fullinformation  = firstName + lastName +email;
 
-		generateQRCodeImage(fullinformation,350,300,"C:\\Users\\Abe\\Desktop\\Scorpio\\src\\main\\resources\\static\\image\\QRcode.png");
+		generateQRCodeImage(fullinformation,350,350,"src\\main\\resources\\static\\downloads\\MyQrcode.png");
+
 
 		return "test";
 
@@ -186,26 +215,41 @@ public class FlightController {
 
 	private static void generateQRCodeImage(String text, int width, int height, String filePath)
 			throws WriterException, IOException {
+
+
 		QRCodeWriter qrCodeWriter = new QRCodeWriter();
 		BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height);
 
 		Path path = FileSystems.getDefault().getPath(filePath);
-		System.out.println("the path of file"+ filePath);
 
 		MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
+
+
+//		String fileName = "image/QrCode.png";
+//
+//		ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+
+
+
 	}
 
 	@GetMapping("/reservations")
 	public String seeReservation(Model model, Principal principal){
 		ArrayList<User> users= new ArrayList<>();
+	//	User currentUser = principal != null ? userRepository.findByUsername(principal.getName()) : null;
 
 		 users.add(userService.getUser());
-
+//		users.add(user);
 
 		Iterable<Flight> flights= flightRepository.findByUsersIn(users);
+
+		//List<Flight> flights = flightRepository.findByFrom_CodeAndTo_Code(from, to);
+
 		model.addAttribute("users",users);
 		model.addAttribute("flights", flights);
 
+		// currentUser = userRepository.findByUsername(principal.getName());
+	//	model.addAttribute("user", user);
 		for(Flight flight:flights){
 			System.out.println("Flight reservation info "+ flight.getAircraft()+ " ");
 		}
@@ -213,6 +257,9 @@ public class FlightController {
 			System.out.println("User Information for reservation "+ user.getFirstName()+ " ");
 		}
 
+	//	List<Flight> flights= flightRepository.findAllUsersIn(users);
+	//	model.addAttribute("flights", flights);
+	//	model.addAttribute("users",userRepository.findAll());
 		return "reservations";
 	}
 

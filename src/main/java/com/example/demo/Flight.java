@@ -13,180 +13,171 @@ import java.util.List;
 @Entity
 public class Flight {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 
-    private String flightNumber;
+	private String flightNumber;
+	@ManyToOne
+	private Airport from;
+	@ManyToOne
+	private Airport to;
 
-    @ManyToOne
-    private Airport to;
-    @NotNull
-    @ManyToOne
-    private Airport from;
+	private String departure;
+	// private Date departure;
+	private String arrival;
+	// private Date arrival;
+	private Integer duration;
+	private Double priceEconomy;
+	private Double priceBusiness;
+	private Double priceFirstclass;
 
+	private String aircraft;
 
-    private String departure;
+	@Transient
+	private int numberOfPassengers;
+	@Transient
+	private FlightClass flightClass;
 
+	@ManyToMany
+	private List<User> users;
 
-    private String arrival;
+	@OneToOne
+	private Passenger passenger;
 
-    private Integer duration;
+	public Flight() {
 
-    private Double priceEconomy;
+	}
 
-    private Double priceBusiness;
+	public Flight(String flightNumber, Airport from, Airport to, String departure, String arrival, Integer duration,
+			Double priceEconomy, Double priceBusiness, Double priceFirstclass, String aircraft) {
+		this.flightNumber = flightNumber;
+		this.from = from;
+		this.to = to;
+		this.departure = departure;
+		this.arrival = arrival;
+		this.duration = duration;
+		this.priceEconomy = priceEconomy;
+		this.priceBusiness = priceBusiness;
+		this.priceFirstclass = priceFirstclass;
+		this.aircraft = aircraft;
+		users=new ArrayList<>();
+	}
 
-    private Double priceFirstclass;
+	public long getId() {
+		return id;
+	}
 
-    private String aircraft;
-    @NotNull
-    @Transient
-    private int numberOfPassengers;
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    @Transient
+	public String getFlightNumber() {
+		return flightNumber;
+	}
 
-    private FlightClass flightClass;
+	public void setFlightNumber(String flightNumber) {
+		this.flightNumber = flightNumber;
+	}
 
-    @ManyToMany
-    private List<User> users;
+	public Airport getFrom() {
+		return from;
+	}
 
-    @OneToOne
-    private Passenger passenger;
+	public void setFrom(Airport from) {
+		this.from = from;
+	}
 
-    public Flight() {
+	public Airport getTo() {
+		return to;
+	}
 
-    }
+	public void setTo(Airport to) {
+		this.to = to;
+	}
 
-    public Flight(String flightNumber, Airport from, Airport to, String departure, String arrival, Integer duration,
-                  Double priceEconomy, Double priceBusiness, Double priceFirstclass, String aircraft) {
-        this.flightNumber = flightNumber;
-        this.from = from;
-        this.to = to;
-        this.departure = departure;
-        this.arrival = arrival;
-        this.duration = duration;
-        this.priceEconomy = priceEconomy;
-        this.priceBusiness = priceBusiness;
-        this.priceFirstclass = priceFirstclass;
-        this.aircraft = aircraft;
-        users = new ArrayList<>();
-    }
+	public String getDeparture() {
+		return departure;
+	}
 
-    public long getId() {
-        return id;
-    }
+	public void setDeparture(String departure) {
+		this.departure = departure;
+	}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	public String getArrival() {
+		return arrival;
+	}
 
-    public String getFlightNumber() {
-        return flightNumber;
-    }
+	public void setArrival(String arrival) {
+		this.arrival = arrival;
+	}
 
-    public void setFlightNumber(String flightNumber) {
-        this.flightNumber = flightNumber;
-    }
+	public Integer getDuration() {
+		return duration;
+	}
 
-    public Airport getFrom() {
-        return from;
-    }
+	public void setDuration(Integer duration) {
+		this.duration = duration;
+	}
 
-    public void setFrom(Airport from) {
-        this.from = from;
-    }
+	public Double getPriceEconomy() {
+		return priceEconomy;
+	}
 
-    public Airport getTo() {
-        return to;
-    }
+	public void setPriceEconomy(Double priceEconomy) {
+		this.priceEconomy = priceEconomy;
+	}
 
-    public void setTo(Airport to) {
-        this.to = to;
-    }
+	public Double getPriceBusiness() {
+		return priceBusiness;
+	}
 
-    public String getDeparture() {
-        return departure;
-    }
+	public void setPriceBusiness(Double priceBusiness) {
+		this.priceBusiness = priceBusiness;
+	}
 
-    public void setDeparture(String departure) {
-        this.departure = departure;
-    }
+	public Double getPriceFirstclass() {
+		return priceFirstclass;
+	}
 
-    public String getArrival() {
-        return arrival;
-    }
+	public void setPriceFirstclass(Double priceFirstclass) {
+		this.priceFirstclass = priceFirstclass;
+	}
 
-    public void setArrival(String arrival) {
-        this.arrival = arrival;
-    }
+	public String getAircraft() {
+		return aircraft;
+	}
 
-    public Integer getDuration() {
-        return duration;
-    }
+	public void setAircraft(String aircraft) {
+		this.aircraft = aircraft;
+	}
 
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
+	public List<User> getUsers() {
+		return users;
+	}
 
-    public Double getPriceEconomy() {
-        return priceEconomy;
-    }
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 
-    public void setPriceEconomy(Double priceEconomy) {
-        this.priceEconomy = priceEconomy;
-    }
+	public Passenger getPassenger() {
+		return passenger;
+	}
 
-    public Double getPriceBusiness() {
-        return priceBusiness;
-    }
+	public void setPassenger(Passenger passenger) {
+		this.passenger = passenger;
+	}
 
-    public void setPriceBusiness(Double priceBusiness) {
-        this.priceBusiness = priceBusiness;
-    }
+	public FlightClass getFlightClass() {
+		return flightClass;
+	}
 
-    public Double getPriceFirstclass() {
-        return priceFirstclass;
-    }
+	public void setFlightClass(FlightClass flightClass) {
+		this.flightClass = flightClass;
+	}
 
-    public void setPriceFirstclass(Double priceFirstclass) {
-        this.priceFirstclass = priceFirstclass;
-    }
-
-    public String getAircraft() {
-        return aircraft;
-    }
-
-    public void setAircraft(String aircraft) {
-        this.aircraft = aircraft;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-    public Passenger getPassenger() {
-        return passenger;
-    }
-
-    public void setPassenger(Passenger passenger) {
-        this.passenger = passenger;
-    }
-
-    public FlightClass getFlightClass() {
-        return flightClass;
-    }
-
-    public void setFlightClass(FlightClass flightClass) {
-        this.flightClass = flightClass;
-    }
-
-    public Double getTotalPrice() {
-        switch (flightClass) {
+	public Double getTotalPrice() {
+		switch (flightClass) {
             case Economy:
                 return numberOfPassengers * priceEconomy;
             case Business:
@@ -194,15 +185,15 @@ public class Flight {
             case First:
                 return numberOfPassengers * priceFirstclass;
             default:
-                return 0.0;
-        }
-    }
+			return 0.0;
+		}
+	}
 
-    public void setNumberOfPassengers(int numberOfPassengers) {
-        this.numberOfPassengers = numberOfPassengers;
-    }
+	public void setNumberOfPassengers(int numberOfPassengers) {
+		this.numberOfPassengers = numberOfPassengers;
+	}
 
-    public void addUser(User user1) {
-        users.add(user1);
-    }
+	public void addUser(User user1){
+		users.add(user1);
+	}
 }

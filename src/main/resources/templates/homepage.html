@@ -31,7 +31,9 @@
 						<option value="">Flight Class</option>
 						<option th:each="flightClass: ${flightClasses}"
 							th:value="${flightClass}" th:text="${flightClass}"></option>
+						<!--<span th:if="${#fields.hasErrors('flightClass')}" th:errors="*{flightClass}" ></span>-->
 					</select>
+
 				</div>
 				<div class="col">
 					From: &nbsp; <select required aria-required="true"  class="form-control" th:field="*{from}">
