@@ -83,11 +83,17 @@ public class DataLoader implements CommandLineRunner {
 		flightRepository.save(new Flight("F0574", lax, atl, "6:00", "9:00", 130, 200.8, 390.0, 450.0, "B787"));
 		flightRepository.save(new Flight("F0577", atl, lax, "12:30", "3:00", 190, 250.5, 400.0, 500.0, "B777"));
 		flightRepository.save(new Flight("F0579", iad, lax, "12:30", "15:00", 150, 350.5, 400.0, 500.0, "B787"));
-		flightRepository.save(new Flight("F0578", lax, iad, "7:30", "9:00", 200, 250.5, 400.0, 500.0, "E767"));
+		flightRepository.save(new Flight("F0578", lax, iad, "7:30", "9:00", 200, 250.5, 400.0, 600.0, "E767"));
 		flightRepository.save(new Flight("F0578", iad, jfk, "19:30", "21:00", 200, 250.5, 400.0, 500.0, "E777"));
-		flightRepository.save(new Flight("F0578", jfk, iad, "7:30", "9:00", 200, 250.5, 400.0, 500.0, "E787"));
+		flightRepository.save(new Flight("F0578", jfk, iad, "7:30", "9:00", 200, 250.5, 400.0, 650.0, "E787"));
 		flightRepository.save(new Flight("F0571", fll, iad, "19:30", "21:00", 200, 250.5, 400.0, 500.0, "E777"));
 		flightRepository.save(new Flight("F0571", atl, fll, "22:30", "23:55", 200, 250.5, 350.0, 500.0, "S800"));
-		flightRepository.save(new Flight("F0571", fll, atl, "7:30", "9:55", 200, 250.5, 350.0, 500.0, "S800"));
+		flightRepository.save(new Flight("F0571", fll, atl, "7:30", "9:55", 200, 250.5, 350.0, 550.0, "S767"));
+		flightRepository.save(new Flight("F0571", ord, fll, "20:30", "22:55", 200, 250.5, 350.0, 500.0, "S787"));
+		flightRepository.save(new Flight("F5001", fll, ord, "8:30", "10:55", 200, 250.5, 350.0, 500.0, "S787"));
+		flightRepository.save(new Flight("F5002", iad, atl, "8:30", "10:55", 200, 250.5, 350.0, 500.0, "S787"));
+		flightRepository.save(new Flight("F5003", atl, iad, "13:30", "15:55", 200, 250.5, 350.0, 700.0, "S787"));
+		flightRepository.save(new Flight("F5003", ord, iad, "16:30", "18:55", 200, 250.5, 350.0, 700.0, "S787"));
+		flightRepository.save(new Flight("F5003", iad, ord, "1:30", "3:55", 200, 250.5, 350.0, 700.0, "S787"));
 	}
 }
