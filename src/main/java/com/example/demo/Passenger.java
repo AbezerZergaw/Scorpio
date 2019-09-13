@@ -98,4 +98,8 @@ public class Passenger {
     public void setTripType(String tripType) {
         this.tripType = tripType;
     }
+	  public String getLastName() {
+        return lastName;
+    }
+
 }
