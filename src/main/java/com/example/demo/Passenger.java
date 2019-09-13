@@ -98,7 +98,4 @@ public class Passenger {
     public void setTripType(String tripType) {
         this.tripType = tripType;
     }
-	public void setDob{
-		this.setDob;
-	}
 }
